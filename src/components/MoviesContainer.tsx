@@ -11,13 +11,16 @@ const Root = styled.div`
 	margin-top: 10px;
 `;
 
-const MoviesContainer: React.FC<{ movies: Array<any> | 'notFound' }> = ({ movies }) => {
+const MoviesContainer: React.FC<{ movies: Array<any> | 'notFound'; isLoading?: boolean }> = ({
+	movies,
+	isLoading = false,
+}) => {
 	return (
 		<>
 			<Root>
 				{movies === 'notFound' ? (
 					<h2>Movie not found</h2>
-				) : movies.length !== 0 ? (
+				) : !isLoading ? (
 					<>
 						{movies.map((movie: any, index) => (
 							<MovieCard
